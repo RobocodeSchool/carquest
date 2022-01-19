@@ -415,7 +415,7 @@ function userWayToPath(startX, startY, userWayOut) {
 }
 
 window.addEventListener("resize", () => {
-  location.reload();
+  if (window.innerWidth > 500) location.reload();
 });
 
 startButton.addEventListener("click", () => {
