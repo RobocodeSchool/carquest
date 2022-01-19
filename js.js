@@ -1,4 +1,5 @@
-let variant = Math.floor(Math.random() * 5 + 1);
+//let variant = Math.floor(Math.random() * 5 + 1);
+variant = 2;
 
 isValid = true;
 
@@ -208,12 +209,14 @@ function draw() {
   if (state == 1) {
     background(220);
     image(game_map, width / 2, height / 2);
+    grid();
     img.resize(width / 15, 0);
     image(img, playerX, playerY);
     gridStep = width / 20;
   } else if (state == 2) {
     background(220);
     image(game_map, width / 2, height / 2);
+    grid();
     img.resize(width / 15, 0);
     image(img, playerX, playerY);
     gridStep = width / 20;
@@ -247,6 +250,7 @@ function draw() {
   } else if (state == 3) {
     background(220);
     image(game_map, width / 2, height / 2);
+    grid();
     img.resize(width / 15, 0);
     image(img, playerX, playerY);
     gridStep = width / 20;
@@ -281,7 +285,7 @@ function draw() {
     image(img, playerX, playerY);
     gridStep = width / 20;
     noStroke();
-    fill("rgba(0,0,0, 0.7)");
+    fill("rgba(0, 0, 0, 0.7)");
     rect(0, 0, width, height);
     textSize(32);
     textFont(Inter);
@@ -319,6 +323,17 @@ function reset() {
   playerY = startPointY;
   userWay = [];
   i = 0;
+}
+
+function grid() {
+  stroke(170);
+  strokeWeight(1);
+  for (let i = 0; i <= width; i += gridStep) {
+    line(i, 0, i, height);
+  }
+  for (let i = 0; i <= height; i += gridStep) {
+    line(0, i, width, i);
+  }
 }
 
 function checkRightWay() {
@@ -367,9 +382,9 @@ function userWayToPath(startX, startY, userWayOut) {
       continue;
     }
 
-    for (let j = 0; j < steps * gridStep; j += 1) {
-      addedX += 1 * dirX;
-      addedY += 1 * dirY;
+    for (let j = 0; j < steps * gridStep; j += 3) {
+      addedX += 3 * dirX;
+      addedY += 3 * dirY;
       pathX.push(Math.round(addedX));
       pathY.push(Math.round(addedY));
     }
