@@ -249,6 +249,9 @@ footer > a {
 }
 
 @media all and (max-width: 500px) {
+  .userArea {
+    padding: 30px 10px;
+  }
   footer {
     display: flex;
     justify-content: center;
