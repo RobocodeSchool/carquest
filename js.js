@@ -7,8 +7,11 @@ let gridStep;
 
 let startButton = document.querySelector("#startButton");
 
-let w = window.innerWidth / 2.4 + 40;
-document.querySelector(".userArea").style.width = w + "px";
+let w;
+if (window.innerWidth > 800) {
+  w = window.innerWidth / 2.4 + 40;
+  document.querySelector(".userArea").style.width = w + "px";
+}
 
 let userWay = [];
 let userWays = [];
@@ -190,7 +193,11 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(window.innerWidth / 2.4, window.innerWidth / 2.4);
+  if (innerWidth > 800) {
+    createCanvas(window.innerWidth / 2.4, window.innerWidth / 2.4);
+  } else {
+    createCanvas(window.innerWidth / 1.2, window.innerWidth / 1.2);
+  }
 
   imageMode(CENTER);
   img.resize(width / 15, 0);
@@ -248,6 +255,7 @@ function draw() {
         isValid = false;
         state = 3;
       } else {
+        isValid = false;
         state = 4;
       }
     }

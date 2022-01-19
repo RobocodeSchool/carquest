@@ -195,3 +195,65 @@ footer > a {
   justify-content: space-between;
   align-items: center;
 }
+
+@media all and (max-width: 1200px) {
+  .instruction {
+    margin-top: 60px;
+    grid-template-columns: 1fr 19px;
+  }
+
+  .instruction .steps {
+    grid-column: 1 / -1;
+  }
+
+  .del {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+  }
+
+  .edits {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media all and (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main {
+    align-self: center;
+  }
+
+  .socials {
+    margin: 0;
+    width: 30vw;
+  }
+}
+
+@media all and (max-width: 800px) {
+  body {
+    padding: 0 10px 30px;
+  }
+
+  .userArea {
+    margin-bottom: 20px;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .socials {
+    display: none;
+  }
+}
+
+@media all and (max-width: 500px) {
+  footer {
+    display: flex;
+    justify-content: center;
+  }
+  footer > a {
+    position: static;
+  }
+}
