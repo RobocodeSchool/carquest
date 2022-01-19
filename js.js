@@ -1,5 +1,5 @@
-//let variant = Math.floor(Math.random() * 5 + 1);
-variant = 2;
+let variant = Math.floor(Math.random() * 5 + 1);
+//variant = 2;
 
 isValid = true;
 
@@ -12,6 +12,8 @@ document.querySelector(".userArea").style.width = w + "px";
 
 let userWay = [];
 let userWays = [];
+
+let rightWay = true;
 
 let img;
 
@@ -240,7 +242,9 @@ function draw() {
     i++;
 
     if (i > userWays[0].length) {
-      if (userWay != mainWay[variant - 1]) {
+      // console.log(userWay);
+      // console.log(mainWay[variant - 1]);
+      if (!rightWay) {
         isValid = false;
         state = 3;
       } else {
@@ -323,6 +327,7 @@ function reset() {
   playerY = startPointY;
   userWay = [];
   i = 0;
+  checkIndex = 0;
 }
 
 function grid() {
@@ -337,10 +342,16 @@ function grid() {
 }
 
 function checkRightWay() {
-  if (userWay[checkIndex] == mainWay[variant - 1][checkIndex]) {
-    checkIndex++;
+  if (userWay[checkIndex] === mainWay[variant - 1][checkIndex]) {
+    // console.log(
+    //   `User: ${userWay[checkIndex]}, Game: ${mainWay[variant - 1][checkIndex]}`
+    // );
+    checkIndex += 2;
   } else {
-    state == 3;
+    // console.log(
+    //   `User: ${userWay[checkIndex]}, Game: ${mainWay[variant - 1][checkIndex]}`
+    // );
+    state = 3;
   }
 }
 
@@ -408,21 +419,43 @@ startButton.addEventListener("click", () => {
       userWay.push(command);
     });
 
-    console.log(userWay);
+    //console.log(userWay);
+    //console.log(mainWay[variant - 1]);
 
     userWays = userWayToPath(startPointX, startPointY, userWay);
+
+    equalsWays(userWay, mainWay[variant - 1]);
+    //console.log(rightWay);
 
     state = 2;
   }
 });
 
+function equalsWays(user, game) {
+  if (user.length != game.length) {
+    rightWay = false;
+  } else {
+    for (let i = 0; i < user.length; i++) {
+      if (user[i] != game[i]) {
+        rightWay = false;
+      }
+    }
+  }
+}
+
 $(document).ready(function () {
   $("#add").click(function () {
     $(".editor .commands").append(`<div class="instruction">
-                            <input type="text" class="command" placeholder="КОМАНДА" />
-                            <input type="text" class="steps" placeholder="КРОКИ" />
-                            <div class="del"></div>
-                          </div>`);
+    <input
+      type="text"
+      class="command"
+      placeholder="КОМАНДА"
+      pattern="forward|turnDown|turnUp|turnRight|turnLeft"
+    />
+    <input type="number" class="steps" placeholder="КРОКИ" max="20" min="1" />
+
+    <div class="del"></div>
+  </div>`);
   });
   $("html").on("click", ".del", function () {
     $(this.parentElement).remove();
