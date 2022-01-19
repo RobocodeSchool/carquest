@@ -184,9 +184,9 @@ mainWay.push(way5);
 let checkIndex = 0;
 
 function preload() {
-  img = loadImage("Quant-Right.png");
-  game_map = loadImage(`maps/${variant}.svg`);
-  Inter = loadFont("Inter.ttf");
+  img = loadImage("images/Quant/Quant-Right.png");
+  game_map = loadImage(`images/maps/${variant}.svg`);
+  Inter = loadFont("fonts/Inter.ttf");
 }
 
 function setup() {
@@ -224,16 +224,16 @@ function draw() {
     gridStep = width / 20;
 
     if (userWays[0][i] == "turnDown") {
-      img = loadImage("Quant-Down.png");
+      img = loadImage("images/Quant/Quant-Down.png");
       checkRightWay();
     } else if (userWays[0][i] == "turnUp") {
-      img = loadImage("Quant-Up.png");
+      img = loadImage("images/Quant/Quant-Up.png");
       checkRightWay();
     } else if (userWays[0][i] == "turnRight") {
-      img = loadImage("Quant-Right.png");
+      img = loadImage("images/Quant/Quant-Right.png");
       checkRightWay();
     } else if (userWays[0][i] == "turnLeft") {
-      img = loadImage("Quant-Left.png");
+      img = loadImage("images/Quant/Quant-Left.png");
       checkRightWay();
     } else {
       playerX = +userWays[0][i];
@@ -322,7 +322,7 @@ function draw() {
 function reset() {
   isValid = true;
   state = 1;
-  img = loadImage("Quant-Right.png");
+  img = loadImage("images/Quant/Quant-Right.png");
   playerX = startPointX;
   playerY = startPointY;
   userWay = [];
@@ -462,9 +462,9 @@ $(document).ready(function () {
   });
 
   $("#add").mouseover(function () {
-    $("#add").attr("src", "add_button_hover.svg");
+    $("#add").attr("src", "images/add_button_hover.svg");
   });
   $("#add").mouseout(function () {
-    $("#add").attr("src", "add_button.svg");
+    $("#add").attr("src", "images/add_button.svg");
   });
 });

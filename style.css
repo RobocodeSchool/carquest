@@ -92,7 +92,7 @@ header {
 .del {
   width: 19px;
   height: 19px;
-  background-image: url("del_button.svg");
+  background-image: url("images/del_button.svg");
   background-size: cover;
   background-position: center center;
   justify-self: center;
@@ -100,7 +100,7 @@ header {
 }
 
 .del:hover {
-  background-image: url("del_button_hover.svg");
+  background-image: url("images/del_button_hover.svg");
   cursor: pointer;
 }
 
@@ -144,7 +144,7 @@ header {
   width: 143px;
   height: 50px;
   border-radius: none;
-  background: url("go_button.svg");
+  background: url("images/go_button.svg");
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -156,7 +156,7 @@ header {
 
 #startButton:hover {
   cursor: pointer;
-  background: url("go_button_hover.svg");
+  background: url("images/go_button_hover.svg");
   color: var(--main-black);
 }
 
