@@ -24,7 +24,7 @@
     <div class="container">
       <div class="userArea">
         <div class="rules">
-          <p>Ласкаво просимо до Robocode Fest Quest.</p> <br>
+          <p>Ласкаво просимо до Robocode Quest.</p> <br>
           <p> Гра, в якій тобі потрібно
           допомогти Робокотику на кванті проїхати трасу від початку до кінця.</p> <br>
           
@@ -49,8 +49,10 @@
                 class="command"
                 placeholder="КОМАНДА"
                 pattern="forward|turnDown|turnUp|turnRight|turnLeft"
+                required
               />
-              <input type="number" class="steps" placeholder="КРОКИ" max="20" min="1" />
+              <input type="number" class="steps" placeholder="КРОКИ" max="20" min="1" onchange="checkSteps(this)"
+              required/>
               <!-- <input type="button" class="del" value="" /> -->
               <div class="del"></div>
             </div>

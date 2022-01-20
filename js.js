@@ -1,5 +1,5 @@
-let variant = Math.floor(Math.random() * 5 + 1);
-//variant = 2;
+//let variant = Math.floor(Math.random() * 5 + 1);
+variant = 5;
 
 isValid = true;
 
@@ -257,6 +257,9 @@ function draw() {
       } else {
         isValid = false;
         state = 4;
+        setTimeout(() => {
+          document.location.href = "https://robocode.ua/fest-ua";
+        }, 3000);
       }
     }
   } else if (state == 3) {
@@ -282,8 +285,17 @@ function draw() {
     text("RESET", width / 2, height / 2 + 8);
 
     if (
-      mouseX > width / 2 - 50 &&
-      mouseX < width / 2 - 50 + 100 &&
+      mouseX > width / 2 - 100 &&
+      mouseX < width / 2 - 100 + 200 &&
+      mouseY > height / 2 - 25 &&
+      mouseY < height / 2 - 25 + 50
+    ) {
+      document.querySelector("canvas").style.cursor = "pointer";
+    } else document.querySelector("canvas").style.cursor = "default";
+
+    if (
+      mouseX > width / 2 - 100 &&
+      mouseX < width / 2 - 100 + 200 &&
       mouseY > height / 2 - 25 &&
       mouseY < height / 2 - 25 + 50 &&
       mouseIsPressed
@@ -306,24 +318,34 @@ function draw() {
     text("Молодець, ти впорався!", width / 2, height / 2 - 150);
 
     textSize(20);
-    text("Якщо хочеш спробувати ще раз з", width / 2, height / 2 - 80);
-    text("іншою мапою, натисни на кнопку", width / 2, height / 2 - 50);
+    text("А тепер дивись, що відбудется :)", width / 2, height / 2 - 80);
+    //text("з інформацією про фест", width / 2, height / 2 - 50);
 
-    rect(width / 2 - 100, height / 2 - 25, 200, 50, 20);
+    //rect(width / 2 - 100, height / 2 - 25, 200, 50, 20);
 
-    textSize(24);
-    fill("rgb(0,0,0)");
-    text("RESET", width / 2, height / 2 + 8);
+    //textSize(24);
+    //fill("rgb(0,0,0)");
+    //text("Про Фест", width / 2, height / 2 + 8);
 
-    if (
-      mouseX > width / 2 - 50 &&
-      mouseX < width / 2 - 50 + 100 &&
-      mouseY > height / 2 - 25 &&
-      mouseY < height / 2 - 25 + 50 &&
-      mouseIsPressed
-    ) {
-      location.reload();
-    }
+    // if (
+    //   mouseX > width / 2 - 100 &&
+    //   mouseX < width / 2 - 100 + 200 &&
+    //   mouseY > height / 2 - 25 &&
+    //   mouseY < height / 2 - 25 + 50
+    // ) {
+    //   document.querySelector("canvas").style.cursor = "pointer";
+    // } else document.querySelector("canvas").style.cursor = "default";
+
+    // if (
+    //   mouseX > width / 2 - 100 &&
+    //   mouseX < width / 2 - 100 + 200 &&
+    //   mouseY > height / 2 - 25 &&
+    //   mouseY < height / 2 - 25 + 50 &&
+    //   mouseIsPressed
+    // ) {
+    //   document.location.href = "https://robocode.ua/fest-ua";
+    //   //location.reload();
+    // }
   }
 }
 
@@ -336,6 +358,7 @@ function reset() {
   userWay = [];
   i = 0;
   checkIndex = 0;
+  rightWay = true;
 }
 
 function grid() {
@@ -423,17 +446,20 @@ startButton.addEventListener("click", () => {
     let instructions = document.querySelectorAll(".instruction");
 
     instructions.forEach((element) => {
-      let command = element.children[0].value + " " + element.children[1].value;
+      let command =
+        element.children[0].value.trim() +
+        " " +
+        element.children[1].value.trim();
       userWay.push(command);
     });
 
-    //console.log(userWay);
-    //console.log(mainWay[variant - 1]);
+    console.log(userWay);
+    console.log(mainWay[variant - 1]);
 
     userWays = userWayToPath(startPointX, startPointY, userWay);
 
     equalsWays(userWay, mainWay[variant - 1]);
-    //console.log(rightWay);
+    console.log(rightWay);
 
     state = 2;
   }
@@ -441,10 +467,14 @@ startButton.addEventListener("click", () => {
 
 function equalsWays(user, game) {
   if (user.length != game.length) {
+    console.log("Different length");
     rightWay = false;
   } else {
     for (let i = 0; i < user.length; i++) {
       if (user[i] != game[i]) {
+        console.log(
+          `User command: ${user[i]}, Game command: ${game[i]}, index: ${i}`
+        );
         rightWay = false;
       }
     }
@@ -459,8 +489,9 @@ $(document).ready(function () {
       class="command"
       placeholder="КОМАНДА"
       pattern="forward|turnDown|turnUp|turnRight|turnLeft"
+      required
     />
-    <input type="number" class="steps" placeholder="КРОКИ" max="20" min="1" />
+    <input type="number" class="steps" placeholder="КРОКИ" max="20" min="1" onchange="checkSteps(this)" required/>
 
     <div class="del"></div>
   </div>`);
@@ -476,3 +507,19 @@ $(document).ready(function () {
     $("#add").attr("src", "images/add_button.svg");
   });
 });
+
+function checkSteps(element) {
+  neir = element.previousElementSibling.value;
+  if (
+    neir === "turnRight" ||
+    neir === "turnLeft" ||
+    neir === "turnUp" ||
+    neir === "turnDown"
+  ) {
+    element.min = 1;
+    element.max = 1;
+  } else {
+    element.min = 2;
+    element.max = 20;
+  }
+}
