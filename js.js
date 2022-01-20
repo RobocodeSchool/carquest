@@ -490,6 +490,7 @@ $(document).ready(function () {
       placeholder="КОМАНДА"
       pattern="forward|turnDown|turnUp|turnRight|turnLeft"
       required
+      onchange="trimCommand(this)"
     />
     <input type="number" class="steps" placeholder="КРОКИ" max="20" min="1" onchange="checkSteps(this)" required/>
 
@@ -522,4 +523,9 @@ function checkSteps(element) {
     element.min = 2;
     element.max = 20;
   }
+}
+
+function trimCommand(element) {
+  console.log("qwery");
+  element.value = element.value.trim();
 }

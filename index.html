@@ -50,6 +50,7 @@
                 placeholder="КОМАНДА"
                 pattern="forward|turnDown|turnUp|turnRight|turnLeft"
                 required
+                onchange="trimCommand(this)"
               />
               <input type="number" class="steps" placeholder="КРОКИ" max="20" min="1" onchange="checkSteps(this)"
               required/>
