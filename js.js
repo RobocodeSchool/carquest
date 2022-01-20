@@ -31,7 +31,7 @@ let timer;
 // state == 2 - отрисовка проезда
 // state == 3 - неудача, перезапуск
 // state == 4 - удача, перезапуск
-let state = 4;
+let state = 1;
 
 let startPointX;
 let startPointY;
