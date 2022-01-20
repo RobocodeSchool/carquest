@@ -200,7 +200,7 @@ function setup() {
   }
 
   imageMode(CENTER);
-  img.resize(width / 15, 0);
+  img.resize(width / 15, width / 15);
   game_map.resize(width, 0);
 
   gridStep = width / 20;
@@ -219,14 +219,14 @@ function draw() {
     background(220);
     image(game_map, width / 2, height / 2);
     grid();
-    img.resize(width / 15, 0);
+    img.resize(width / 15, width / 15);
     image(img, playerX, playerY);
     gridStep = width / 20;
   } else if (state == 2) {
     background(220);
     image(game_map, width / 2, height / 2);
     grid();
-    img.resize(width / 15, 0);
+    img.resize(width / 15, width / 15);
     image(img, playerX, playerY);
     gridStep = width / 20;
 
@@ -266,7 +266,7 @@ function draw() {
     background(220);
     image(game_map, width / 2, height / 2);
     grid();
-    img.resize(width / 15, 0);
+    img.resize(width / 15, width / 15);
     image(img, playerX, playerY);
     gridStep = width / 20;
     noStroke();
@@ -305,7 +305,7 @@ function draw() {
   } else if (state == 4) {
     background(220);
     image(game_map, width / 2, height / 2);
-    img.resize(width / 15, 0);
+    img.resize(width / 15, width / 15);
     image(img, playerX, playerY);
     gridStep = width / 20;
     noStroke();
@@ -522,6 +522,12 @@ function checkSteps(element) {
   } else {
     element.min = 2;
     element.max = 20;
+  }
+
+  if (element.value > 20) {
+    element.value = 20;
+  } else if (element.value < 1) {
+    element.value = 1;
   }
 }
 
