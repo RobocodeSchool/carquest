@@ -1,5 +1,5 @@
-//let variant = Math.floor(Math.random() * 5 + 1);
-variant = 5;
+let variant = Math.floor(Math.random() * 5 + 1);
+//variant = 5;
 
 isValid = true;
 
@@ -31,7 +31,7 @@ let timer;
 // state == 2 - отрисовка проезда
 // state == 3 - неудача, перезапуск
 // state == 4 - удача, перезапуск
-let state = 1;
+let state = 4;
 
 let startPointX;
 let startPointY;
